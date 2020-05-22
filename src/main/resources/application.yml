@@ -1,0 +1,28 @@
+server:
+  port: 8088
+  servlet:
+    context-path: /cms
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/student?useUnicode=true&characterEncoding=utf8
+    username: root
+    password: root
+
+mybatis-plus:
+  global-config:
+    db-config:
+      id-type: auto
+      field-strategy: not_empty
+      #ÍÕ·åÏÂ»®Ïß×ª»»
+      column-underline: true
+      #Âß¼­É¾³ýÅäÖÃ
+      logic-delete-value: 0
+      logic-not-delete-value: 1
+      db-type: mysql
+    refresh: false
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: true
+  mapper-locations: classpath*:mapper/*Mapper.xml
+  type-aliases-package: com.lsh.entity

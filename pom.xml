@@ -1,8 +1,3 @@
-# 项目配置
-
-	## 1.1Maven配置
-
-```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
@@ -100,39 +95,3 @@
     </build>
 
 </project>
-
-```
-
-## 1.2Application.yml配置
-
-```yml
-server:
-  port: 8088
-  servlet:
-    context-path: /cms
-spring:
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/student?useUnicode=true&characterEncoding=utf8
-    username: root
-    password: root
-
-mybatis-plus:
-  global-config:
-    db-config:
-      id-type: auto
-      field-strategy: not_empty
-      column-underline: true
-      logic-delete-value: 0
-      logic-not-delete-value: 1
-      db-type: mysql
-    refresh: false
-  configuration:
-    map-underscore-to-camel-case: true
-    cache-enabled: true
-  mapper-locations: classpath*:mapper/*Mapper.xml
-  type-aliases-package: com.lsh.entity
-```
-
-
-
