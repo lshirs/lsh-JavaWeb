@@ -9,12 +9,13 @@
         <result property="email" column="email" />
         <result property="mobile" column="mobile" />
         <collection property="roles" ofType="SysRole">
-            <id property="id" column="role_id"></id>
+            <id property="id" column="role_id"/>
             <result property="name" column="role_name"/>
         </collection>
     </resultMap>
 
     <select id="findUserByName" parameterType="java.lang.String" resultMap="userMap">
+
         select u.*
         ,r.name role_name,r.id role_id
         from sys_user u

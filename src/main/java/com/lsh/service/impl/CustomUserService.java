@@ -18,23 +18,22 @@ import java.util.List;
 public class CustomUserService implements UserDetailsService {
     @Autowired
     private SysUserMapper sysUserMapper;
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException{
 
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         SysUser user = sysUserMapper.findUserByName(username);
-        if (user != null){
-            List<SysRole> roles = user.getRoles(); //获取用户
+        if (user != null) {
+            List<SysRole> roles = user.getRoles();//获取用户角色
             List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
-            for (SysRole role : roles){
-                if (role != null && role.getName() != null){
+            for (SysRole role : roles) {
+                if (role != null && role.getName() != null) {
                     GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(role.getName());
                     grantedAuthorities.add(grantedAuthority);
                 }
             }
             return new User(user.getUsername(), user.getPassword(), grantedAuthorities);
-        }else{
-            throw new UsernameNotFoundException("admin" + username + "do not exist");
+        } else {
+            throw new UsernameNotFoundException("admin: " + username + " do not exist!");
         }
-
     }
 }
