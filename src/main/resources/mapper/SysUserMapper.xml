@@ -15,12 +15,11 @@
     </resultMap>
 
     <select id="findUserByName" parameterType="java.lang.String" resultMap="userMap">
-
-        select u.*
+        SELECT u.*
         ,r.name role_name,r.id role_id
-        from sys_user u
-        LEFT JOIN sys_user_role sru on u.id = sru.sys_user_id
-        LEFT JOIN sys_role r on sru.sys_role_id=r.id
-        WHERE u.username= #{username} and u.status = '1'
+        FROM sys_user u
+        LEFT JOIN sys_user_role sru ON u.id = sru.sys_user_id
+        LEFT JOIN sys_role r ON sru.sys_role_id=r.id
+        WHERE u.username= #{username} AND u.status = '1'
     </select>
 </mapper>

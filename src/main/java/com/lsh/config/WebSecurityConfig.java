@@ -30,6 +30,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        // 放行外部资源
+        http.headers().frameOptions().disable();
+       // http.csrf().disable();
+
+
         http
                 .authorizeRequests()    //验证请求
                 .antMatchers("/assets/**","/js/**","/public/**","/front/**").permitAll() //放行部分合法路径

@@ -9,7 +9,5 @@ import org.springframework.stereotype.Component;
 public interface SysUserMapper extends BaseMapper<SysUser> {
 
     SysUser findUserByName(String username);
-    SysUser findUserById(Integer id);
-    void insertRoles(SysUser sysUser);
-    void deleteRoles(SysUser sysUser);
+
 }

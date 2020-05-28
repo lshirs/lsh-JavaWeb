@@ -2,6 +2,8 @@ package com.lsh.web;
 
 import com.lsh.entity.SysMenu;
 import com.lsh.service.ISysMenuService;
+import com.lsh.service.ISysRoleService;
+import com.lsh.service.ISysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -16,6 +18,10 @@ import java.util.List;
 public class SysIndexController {
     @Autowired
     private ISysMenuService sysMenuService;
+    @Autowired
+    private ISysUserService sysUserService;
+    @Autowired
+    private ISysRoleService sysRoleService;
 
 
     @RequestMapping("index")
@@ -28,8 +34,28 @@ public class SysIndexController {
                 .getPrincipal();
         //读取用户管理菜单
         List<SysMenu> menuList = sysMenuService.findListByName(userDetails.getUsername());
-        menuList.forEach(System.out::println);
-        model.addAttribute("menuList",menuList);
+        /*menuList.forEach(System.out::println);*/
+        model.addAttribute("menus",menuList);
         return "index";
+    }
+    /**
+     * 读取控制台
+     */
+    @RequestMapping("/console")
+    public String console(Model model){
+
+        //用户数
+        Integer userCount = sysUserService.count();
+
+        //角色数
+        Integer roleCount = sysRoleService.count();
+
+        //菜单数
+        Integer menuCount = sysMenuService.count();
+
+        model.addAttribute("userCount",userCount);
+        model.addAttribute("roleCount",roleCount);
+        model.addAttribute("menuCount",menuCount);
+        return "console";
     }
 }

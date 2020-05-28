@@ -15,8 +15,9 @@ mybatis-plus:
       id-type: auto
       field-strategy: not_empty
       column-underline: true
-      logic-delete-value: 0
-      logic-not-delete-value: 1
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+
       db-type: mysql
     refresh: false
   configuration:
@@ -24,3 +25,4 @@ mybatis-plus:
     cache-enabled: true
   mapper-locations: classpath*:mapper/*Mapper.xml
   type-aliases-package: com.lsh.entity
+

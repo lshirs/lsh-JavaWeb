@@ -15,7 +15,7 @@ import java.util.List;
  * 菜单管理 Mapper 接口
  * </p>
  *
- * @author jzhang
+ * @author lsh
  * @since 2020-02-19
  */
 @Repository

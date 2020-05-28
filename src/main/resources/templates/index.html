@@ -45,6 +45,7 @@
                         <li th:each="menu,iterStat : ${menus}" class="layui-nav-item layui-nav-tree"
                             th:classappend="${iterStat.index eq 0} ? 'layui-nav-itemed'" th:if="${menu.pid == 0}">
                             <!--<th:block>-->
+                            <!--一级菜单-->
                             <a href="javascript:;">
                                 <i class="layui-icon" th:utext="${menu.icon}">&#xe609;</i>
                                 <em th:text="${menu.name}">系统设置</em>

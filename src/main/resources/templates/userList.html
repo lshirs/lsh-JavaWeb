@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="assets/css/layui.css" th:href="@{/assets/css/layui.css}">
+    <link rel="stylesheet" href="../assets/css/view.css" th:href="@{/assets/css/view.css}"/>
+    <link rel="icon" href="/favicon.ico">
+    <title>管理后台</title>
+</head>
+<body class="layui-view-body">
+    <div class="layui-content">
+        <div class="layui-page-header">
+            <div class="pagewrap">
+                <span class="layui-breadcrumb">
+                  <a href="">首页</a>
+                  <a href="">用户</a>
+                  <a><cite>用户组</cite></a>
+                </span>
+                <h2 class="title">用户组</h2>
+            </div>
+        </div>
+        <div class="layui-row">
+            <div class="layui-card">
+                <div class="layui-card-body">
+                    <div class="form-box">
+                        <div class="layui-form layui-form-item">
+                            <form th:action="@{/a/user/list}" th:method="post">
+                                <div class="layui-inline">
+                                    <div class="layui-form-mid">用户名:</div>
+                                    <div class="layui-input-inline" style="width: 100px;">
+                                      <input type="text" name="username" autocomplete="off" class="layui-input">
+                                    </div>
+                                    <div class="layui-form-mid">邮箱:</div>
+                                    <div class="layui-input-inline" style="width: 100px;">
+                                      <input type="text" name="email" autocomplete="off" class="layui-input">
+                                    </div>
+                                    <input type="submit" class="layui-btn layui-btn-blue" value="查询"/>
+                                    <button class="layui-btn layui-btn-primary">重置</button>
+                                </div>
+                            </form>
+                        </div>
+                        <button class="layui-btn layui-btn-blue"><i class="layui-icon">&#xe654;</i><a
+                                th:href="@{/a/user/form}">新增</a></button>
+                        <table class="layui-table">
+                            <colgroup>
+                                <col width="150">
+                                <col width="200">
+                                <col>
+                            </colgroup>
+                            <thead>
+                            <tr>
+                                <th>登录名</th>
+                                <th>昵称</th>
+                                <th>邮箱</th>
+                                <th>电话</th>
+                                <th>状态</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody id="userData">
+                            <tr th:each="sysuser:${userList}">
+                                <td th:text="${sysuser.username}">贤心</td>
+                                <td th:text="${sysuser.name}">贤心</td>
+                                <td th:text="${sysuser.email}">1104975916@qq.com</td>
+                                <td th:text="${sysuser.mobile}">人生就像是一场修行</td>
+                                <td th:text="${#dict.getDictLabel('userStatus',sysuser.status)}">0</td>
+                                <td>
+                                    <a href="#" th:href="@{/a/user/form(id=${sysuser.id})}" class="layui-btn layui-btn-sm">编辑</a>
+                                    <button class="layui-btn layui-btn-sm layui-btn-normal" th:if="${sysuser.status} == '2'"
+                                            th:onclick="|changeStatus(${sysuser.id},'1')|">启用
+                                    </button>
+                                    <button class="layui-btn layui-btn-sm layui-btn-danger" th:if="${sysuser.status} == '1'"
+                                            th:onclick="|changeStatus(${sysuser.id},'2')|">冻结
+                                    </button>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <!--分页导航-->
+                        <div id="pagination"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../assets/layui.all.js" th:src="@{/assets/layui.all.js}"></script>
+    <script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+    <script th:inline="javascript">
+        //获取应用路径
+        var contextPath = [[${#request.getContextPath()}]];
+    </script>
+    <script>
+        layui.use(['laypage', 'layer'], function() {
+            var laypage = layui.laypage
+                , layer = layui.layer;
+
+            //总页数大于页码总数
+            laypage.render({
+                elem: 'pagination'
+                ,count: [[${total}]] //数据总数
+                ,limit: 2   //定义每页显示的记录数
+                ,curr: [[${current}]] //定义当前页码
+                ,jump: function(obj,first){
+                    //obj包装当前分页的所有参数
+
+                    //非第一次执行
+                    if (!first) {
+                        window.location.href = contextPath + "/a/user/list?curr=" + obj.curr + "&size=" + obj.limit;
+                    }
+                }
+            });
+        })
+        
+        //修改用户状态
+        function changeStatus(userId,status) {
+            var tips;
+            if (status == '1') {
+                tips = '启用';
+            } else {
+                tips = '冻结';
+            }
+            //询问框
+            layer.confirm('确认' + tips + "？", {
+                btn: ['必须的','算了吧'] //按钮
+            }, function(){
+                //异步修改用户的状态
+                $.ajax({
+                    url : contextPath + "/a/user/changeStatus",
+                    data : {"id" : userId, "status" : status},
+                    method : "post",
+                    success : function (data) {
+                        layer.msg(data.message,{icon:1, time:1000},function () {
+                            //自动刷新当前页面
+                            window.location.reload(true);
+                        });
+                    }
+                })
+            }, function(){
+                layer.msg('取消成功', {
+                    time: 1000, //1s后自动关闭
+                });
+            });
+        }
+
+    </script>
+</body>
+</html>
