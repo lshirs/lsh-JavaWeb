@@ -15,7 +15,7 @@ public class SysRole {
     private Integer id;
     private String name;
     private String remark;
-    private String icon;
+   // private String icon;
     private Integer createBy;
     private Date createDate;
     private Integer updateBy;

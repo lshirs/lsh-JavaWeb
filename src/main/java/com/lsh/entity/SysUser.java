@@ -10,7 +10,7 @@ import java.util.Date;
 import java.util.List;
 
 @Data
-public class SysUser<SysRole> {
+public class SysUser {
     @TableId(type = IdType.AUTO) //主键自动增加
     private Integer id;
     private String username;
@@ -19,7 +19,7 @@ public class SysUser<SysRole> {
     private String email;
     private String mobile;
     private Integer status;
-    private String userType;
+    //private String userType;
     private Integer createBy;
     private Date createDate;
     private Integer updateBy;

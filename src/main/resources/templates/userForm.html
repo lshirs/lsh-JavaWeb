@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" type="text/css" th:href="@{/assets/css/layui.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/assets/css/view.css}"/>
+    <title>用户表单</title>
+</head>
+<body class="layui-view-body">
+<div class="layui-content">
+    <div class="layui-row">
+        <div class="layui-card">
+            <div class="layui-card-header">用户<span th:text="${sysUser.id != null ? '编辑' : '新增'}"></span></div>
+            <form class="layui-form layui-card-body" action="#" th:action="@{/a/user/save}" method="post">
+                <input type="hidden" name="id" th:value="${sysUser.id}">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">登录名</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="username" required th:value="${sysUser.username}" lay-verify="required"
+                               placeholder="登录名" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">用户名</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="name" required th:value="${sysUser.name}" lay-verify="required"
+                               placeholder="用户名" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">邮箱</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="email" required th:value="${sysUser.email}" lay-verify="required"
+                               placeholder="邮箱" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">电话</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="mobile" required th:value="${sysUser.mobile}" lay-verify="required"
+                               placeholder="电话" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">角色</label>
+                    <div class="layui-input-block">
+                        <th:block th:each="role,iterStat : ${roleList}">
+                            <span th:unless="${#lists.isEmpty(sysUser.roles)}">
+                                <th:block th:each="sysrole:${sysUser.roles}">
+                                    <th:block th:if="${role.id == sysrole.id}">
+                                        <input type="checkbox" th:name="'roles['+ ${iterStat.index} + '].id'"
+                                               th:checked="${role.id == sysrole.id}" th:value="${role.id}" title="写作"
+                                               th:title="${role.name}">
+                                    </th:block>
+                                    <th:block th:if="${role.id != sysrole.id}">
+                                        <input type="checkbox" th:name="'roles['+ ${iterStat.index} + '].id'"
+                                               th:value="${role.id}" title="写作" th:title="${role.name}">
+                                    </th:block>
+                                </th:block>
+                            </span>
+                            <span th:if="${#lists.isEmpty(sysUser.roles)}">
+                                    <input type="checkbox" th:name="'roles['+ ${iterStat.index} + '].id'"
+                                           th:value="${role.id}" title="写作" th:title="${role.name}">
+                            </span>
+                        </th:block>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <button class="layui-btn layui-btn-blue" lay-submit lay-filter="formDemo">保存</button>
+                        <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script th:src="@{/assets/layui.all.js}"></script>
+<script>
+    var form = layui.form
+        , layer = layui.layer;
+</script>
+</body>
+</html>

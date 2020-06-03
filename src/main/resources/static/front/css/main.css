@@ -1,0 +1,204 @@
+/*背景色*/
+
+.gray-bg {
+    background-color: #f3f3f4;
+}
+/*左右固定*/
+
+html,
+body {
+    overflow-x: hidden;
+}
+/*确认蓝色*/
+#btn{
+    background-color:#1572DD;
+    border-color:#1572DD;
+    color: white;
+}
+/*头部样式*/
+
+header .navbar-default {
+    background-color: #1572DD;
+}
+
+header .navbar-brand {
+    color: #fff !important;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+    background-color: #fff !important;
+}
+
+.navbar-default .navbar-nav > li > a {
+    color: #fff !important;
+}
+
+.navbar-default .navbar-nav > li > a:focus,
+.navbar-default .navbar-nav > li > a:hover {
+    color: #eee !important;
+}
+/*中间部分*/
+.content {
+    min-height: calc(100vh - 100px);
+}
+
+.wrapper-content {
+    padding: 20px;
+}
+
+.row {
+    margin-right: 15px;
+    margin-left: 15px;
+}
+
+.chat-view {
+    z-index: 20012;
+}
+
+.ibox {
+    clear: both;
+    margin-bottom: 25px;
+    margin-top: 0;
+    padding: 0;
+}
+
+.ibox-title {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #fff;
+    border-color: #e7eaec;
+    -webkit-border-image: none;
+    -o-border-image: none;
+    border-image: none;
+    border-style: solid solid none;
+    border-width: 4px 0 0;
+    color: inherit;
+    margin-bottom: 0;
+    padding: 14px 15px 7px;
+    min-height: 48px;
+    background-color: #1572DD;
+    color: white;
+}
+
+.pull-right {
+    float: right!important;
+}
+
+.small,
+small {
+    font-size: 85%;
+}
+/*聊天窗口以下的代码*/
+
+.ibox-content {
+    background-color: #fff;
+    color: inherit;
+    padding: 15px 20px 20px;
+    border-color: #e7eaec;
+    -webkit-border-image: none;
+    -o-border-image: none;
+    border-image: none;
+    border-style: solid solid none;
+    border-width: 1px 0;
+}
+
+img {
+    vertical-align: middle;
+}
+
+a {
+    color: #337ab7;
+    text-decoration: none;
+}
+/*下面的输入框*/
+
+.row {
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+.form-control,
+.single-line {
+    background-color: #FFF;
+    background-image: none;
+    border: 1px solid #e5e6e7;
+    border-radius: 1px;
+    color: inherit;
+    display: block;
+    padding: 6px 12px;
+    -webkit-transition: border-color .15s ease-in-out 0s, box-shadow .15s ease-in-out 0s;
+    transition: border-color .15s ease-in-out 0s, box-shadow .15s ease-in-out 0s;
+    width: 100%;
+    font-size: 14px;
+}
+
+.ibox-content {
+    padding: 0
+}
+
+
+
+
+.message-date {
+    font-size: 10px;
+    color: #888
+}
+
+.message-content {
+    display: block
+}
+
+.chat-discussion {
+    background: #eee;
+    padding: 15px;
+    height: 450px;
+    overflow-y: auto
+}
+/*控制头像的圆弧和方向*/
+
+.img-circle {
+    float: right;
+    margin-left: 1px
+}
+
+.message {
+    background-color: #fff;
+    border: 1px solid #e7eaec;
+    text-align: left;
+    display: block;
+    padding: 10px 20px;
+    position: relative;
+    border-radius: 4px
+}
+
+.chat-message-left {
+    padding: 10px 20px
+}
+.chat-message-right {
+    padding: 10px 20px
+}
+
+.chat-discussion .chat-message-left .img-circle {
+    float: left;
+    margin-right: 10px
+}
+
+.chat-discussion .chat-message-right .message {
+    text-align: right;
+    margin-right: 55px
+}
+
+.chat-discussion .chat-message-left .message-date {
+    float: right
+}
+
+.chat-discussion .chat-message-right .message-date {
+    float: left
+}
+
+.chat-discussion .chat-message-left .message {
+    text-align: left;
+    margin-left: 55px
+}

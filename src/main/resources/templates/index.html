@@ -100,7 +100,7 @@
     <script src="js/layer.js" th:src="@{/assets/layer/layer.js}"></script>
     <script th:inline="javascript">
         //获取应用路径
-        var contextPath = [[${#request.getContextPath()}]];
+        const contextPath = [[${#request.getContextPath()}]];
     </script>
     <script>
         function modify() {
