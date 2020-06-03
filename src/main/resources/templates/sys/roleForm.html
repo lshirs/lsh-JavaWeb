@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" type="text/css" th:href="@{/assets/css/layui.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/assets/css/view.css}"/>
+    <title>角色表单</title>
+</head>
+<body class="layui-view-body">
+<div class="layui-content">
+    <div class="layui-row">
+        <div class="layui-card">
+            <div class="layui-card-header">角色<span th:text="${sysRole.id != null ? '编辑' : '新增'}"></span></div>
+            <form id="role-form" class="layui-form layui-card-body" action="#" method="post">
+                <input type="hidden" name="id" th:value="${sysRole.id}">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">角色</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="name" required th:value="${sysRole.name}" lay-verify="required"
+                               placeholder="角色名" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">授权</label>
+                    <div class="layui-input-block">
+                        <!--加载菜单数据-->
+                        <div class="show-menu-data" style="padding: 10px">
+                            <form class="layui-form">
+                                <div id="menuTree" class="xtree_contianer"></div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">备注</label>
+                    <div class="layui-input-block">
+                        <textarea name="remark" placeholder="请输入内容" class="layui-textarea"
+                                  th:text="${sysRole.remark}"></textarea>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <button type="button" class="layui-btn layui-btn-blue" onclick="saveRole()">保存</button>
+                        <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script th:src="@{/assets/layui.all.js}"></script>
+<script th:src="@{/assets/lay/modules/layui-xtree.js}"></script>
+<script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+<script>
+    var form = layui.form
+        , layer = layui.layer;
+</script>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    var contextPath = [[${#request.getContextPath()}]]; //获取当前应用路径
+    var roleId = [[${sysRole.id}]];
+    /*]]>*/
+</script>
+<script type="text/javascript">
+    //********************
+    //      正式开始
+    //********************
+    //layui 的 form 模块是必须的
+    var xtree;
+    layui.use(['form'], function () {
+        var form = layui.form;
+
+        //1、最基础的用法 - 直接绑定json
+        xtree = new layuiXtree({
+            elem: 'menuTree'   //(必填) 放置xtree的容器，样式参照 .xtree_contianer
+            , form: form     //(必填) layui 的 from
+            , data: contextPath + "/a/role/getRoleMenuTree?id=" + (roleId == null ? '' : roleId)     //(必填) json数据
+        });
+
+    });
+
+    //异步保存
+    function saveRole() {
+        var data = $("#role-form").serialize();
+        var oCks = xtree.GetChecked(); //这是方法
+        var tmpData = [];
+        var menuData = [];
+        for (var i = 0; i < oCks.length; i++) {
+            var v = oCks[i].value;
+            tmpData.push(v);
+            var pCks = xtree.GetParent(v);
+            if (pCks != null) {//保存父节点
+                tmpData.push(pCks.value);
+            }
+        }
+
+        //去除重复值
+        for (var i = 0; i < tmpData.length; i++) {
+            var items = tmpData[i];
+            if ($.inArray(items, menuData)) {
+                menuData.push(tmpData[i]);
+            }
+        }
+
+        $.ajax({
+            type: "post",
+            url: contextPath + "/a/role/save",
+            data: data + "&roleMenus=" + menuData,
+            success: function (jsonData) {
+                layer.msg('保存成功', {icon: 1, time: 1000}, function () {
+                    window.location.href = contextPath + "/a/role/list";
+                });
+            }
+        })
+    }
+
+
+</script>
+</body>
+</html>
