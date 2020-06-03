@@ -36,7 +36,7 @@ public class SysIndexController {
         List<SysMenu> menuList = sysMenuService.findListByName(userDetails.getUsername());
         menuList.forEach(System.out::println);
         model.addAttribute("menus",menuList);
-        return "index";
+        return "sys/index";
     }
     /**
      * 读取控制台
@@ -56,6 +56,6 @@ public class SysIndexController {
         model.addAttribute("userCount",userCount);
         model.addAttribute("roleCount",roleCount);
         model.addAttribute("menuCount",menuCount);
-        return "console";
+        return "sys/console";
     }
 }

@@ -51,8 +51,8 @@
 <script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
 <script th:inline="javascript">
     /*<![CDATA[*/
-    var contextPath = [[${#request.getContextPath()}]]; //获取当前应用路径
-    var userId = [[${sysUser.id}]];
+    const contextPath = [[${#request.getContextPath()}]]; //获取当前应用路径
+    const userId = [[${sysUser.id}]];
     /*]]>*/
 </script>
 <script type="text/javascript">

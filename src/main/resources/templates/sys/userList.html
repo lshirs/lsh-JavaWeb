@@ -65,8 +65,8 @@
                                 <td th:text="${sysuser.name}">贤心</td>
                                 <td th:text="${sysuser.email}">1104975916@qq.com</td>
                                 <td th:text="${sysuser.mobile}">人生就像是一场修行</td>
-                                <td th:text="${sysuser.status}">0</td>
-                               <!-- <td th:text="${#dict.getDictLabel('userStatus',sysuser.status)}">0</td>-->
+
+                                <td >0</td>
                                 <td>
                                     <a href="#" th:href="@{/a/user/form(id=${sysuser.id})}" class="layui-btn layui-btn-sm">编辑</a>
                                     <button class="layui-btn layui-btn-sm layui-btn-normal" th:if="${sysuser.status} == '2'"
@@ -90,11 +90,11 @@
     <script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
     <script th:inline="javascript">
         //获取应用路径
-        const contextPath = [[${#request.getContextPath()}]];
+        var contextPath = [[${#request.getContextPath()}]];
     </script>
     <script>
         layui.use(['laypage', 'layer'], function() {
-            const laypage = layui.laypage
+            var laypage = layui.laypage
                 , layer = layui.layer;
 
             //总页数大于页码总数
@@ -116,7 +116,7 @@
         
         //修改用户状态
         function changeStatus(userId,status) {
-            let tips;
+            var tips;
             if (status == '1') {
                 tips = '启用';
             } else {

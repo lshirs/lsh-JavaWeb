@@ -12,12 +12,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -33,7 +31,7 @@ public class SysUserController {
 
     @RequestMapping("/login")
     public String login(){
-        return "login";
+        return "sys/login";
     }
 
     @RequestMapping("/logout")
@@ -69,7 +67,7 @@ public class SysUserController {
         model.addAttribute("userList",page.getRecords());
         model.addAttribute("total",page.getTotal());
         model.addAttribute("current",page.getCurrent());
-        return "userList";
+        return "sys/userList";
     }
     /**
      * 编辑
@@ -84,13 +82,29 @@ public class SysUserController {
         model.addAttribute("roleList", roleList);
         System.out.println(sysUser);
         model.addAttribute("sysUser", sysUser);
-        return "userForm";
+        return "sys/userForm";
     }
 
     @RequestMapping("/save")
     public String save(SysUser sysUser) {
         sysUserService.saveSysUser(sysUser);
         return "redirect:list";
+    }
+    /**
+     * 修改密码
+     */
+    @RequestMapping("/modify")
+    public String modify(Model model) {
+        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext()
+                .getAuthentication()
+                .getPrincipal();
+
+        QueryWrapper<SysUser> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("username",userDetails.getUsername());
+        SysUser sysUser = sysUserService.getOne(queryWrapper);
+        //将用户保存到model
+        model.addAttribute("sysUser",sysUser);
+        return "sys/modifyUserPwd";
     }
 
 }
