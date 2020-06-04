@@ -12,10 +12,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -95,6 +97,7 @@ public class SysUserController {
      */
     @RequestMapping("/modify")
     public String modify(Model model) {
+        // 获取spring security用户
         UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext()
                 .getAuthentication()
                 .getPrincipal();
@@ -105,6 +108,20 @@ public class SysUserController {
         //将用户保存到model
         model.addAttribute("sysUser",sysUser);
         return "sys/modifyUserPwd";
+    }
+    /**
+     * 保存密码
+     */
+    @ResponseBody
+    @RequestMapping("/modifySubmit")
+    public String modifySubmit(SysUser sysUser){
+        //sysUserService 有就改没有新增
+        //密码加密
+        String pwd = new BCryptPasswordEncoder().encode(sysUser.getPassword());
+        sysUser.setPassword(pwd);
+        sysUserService.saveOrUpdate(sysUser);
+
+        return "success";
     }
 
 }

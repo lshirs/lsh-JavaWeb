@@ -32,7 +32,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         // 放行外部资源
         http.headers().frameOptions().disable();
-       // http.csrf().disable();
+        // 跨域问题
+        http.csrf().disable();
 
 
         http

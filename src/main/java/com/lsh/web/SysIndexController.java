@@ -34,6 +34,9 @@ public class SysIndexController {
                 .getPrincipal();
         //读取用户管理菜单
         List<SysMenu> menuList = sysMenuService.findListByName(userDetails.getUsername());
+
+
+
         menuList.forEach(System.out::println);
         model.addAttribute("menus",menuList);
         return "sys/index";

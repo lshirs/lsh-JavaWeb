@@ -1,8 +1,8 @@
 layui.define(['element'],function(exports){
 
-    var $ = layui.$;
+    const $ = layui.$;
     $('.input-field').on('change',function(){
-        var $this = $(this),
+        const $this = $(this),
             value = $.trim($this.val()),
             $parent = $this.parent();
 
@@ -10,6 +10,7 @@ layui.define(['element'],function(exports){
             $parent.addClass('field-focus');
         }else{
             $parent.removeClass('field-focus');
+
         }
     })
     exports('login');

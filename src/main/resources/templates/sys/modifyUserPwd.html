@@ -15,6 +15,7 @@
             <form id="userForm" class="layui-form layui-card-body">
                 <input type="hidden" name="id" th:value="${sysUser.id}">
                 <div class="layui-form-item">
+                    <!--th:readonly只读-->
                     <label class="layui-form-label">登录名</label>
                     <div class="layui-input-inline">
                         <input type="text" name="username" th:value="${sysUser.username}" th:readonly="true"
@@ -39,7 +40,7 @@
                 <div class="layui-form-item">
                     <div class="layui-input-block">
                         <input type="button" class="layui-btn layui-btn-blue" lay-submit lay-filter="save"
-                               th:value="保存"></input>
+                               th:value="保存"/>
                         <button type="reset" class="layui-btn layui-btn-primary">重置</button>
                     </div>
                 </div>
@@ -68,7 +69,7 @@
                 }
             },
             confirmPwd: function (value, item) {
-                var pwd = $('input[name=password]').val();
+                const pwd = $('input[name=password]').val();
                 if (pwd != value)
                     return "两次输入密码不一致，请重新输入！";
             }
@@ -87,7 +88,7 @@
                             time: 1000
                         }, function () {
                             //在iframe中 关闭当前弹出层
-                            var index = parent.layer.getFrameIndex(window.name);
+                            const index = parent.layer.getFrameIndex(window.name);
                             parent.layer.close(index);
                         });
                     } else {
