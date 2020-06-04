@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="assets/css/layui.css" th:href="@{/assets/css/layui.css}">
+    <link rel="stylesheet" href="assets/css/admin.css" th:href="@{/assets/css/admin.css}">
+    <link rel="icon" href="/favicon.ico">
+    <title>管理后台</title>
+</head>
+<body class="layui-layout-body">
+    <div class="layui-layout layui-layout-admin">
+        <div class="layui-header custom-header">
+            
+            <ul class="layui-nav layui-layout-left">
+                <li class="layui-nav-item slide-sidebar" lay-unselect>
+                    <a href="javascript:;" class="icon-font"><i class="ai ai-menufold"></i></a>
+                </li>
+            </ul>
+
+            <ul class="layui-nav layui-layout-right">
+                <li class="layui-nav-item">
+                    <a href="javascript:;" sec:authentication="name">朱小明</a>
+                    <dl class="layui-nav-child">
+						<dd><a href="javascript:;" th:onclick="|modify()|">修改密码</a></dd>
+                        <dd><a href="">帮助中心</a></dd>
+                        <dd><a href="login.html" th:href="@{/a/user/logout}">退出</a></dd>
+                    </dl>
+                </li>
+            </ul>
+        </div>
+
+        <div class="layui-side custom-admin">
+            <div class="layui-side-scroll">
+
+                <div class="custom-logo">
+                    <img th:src="@{/assets/images/logo.png}" alt=""/>
+                    <h1>影片后台管理系统</h1>
+                </div>
+                <ul id="Nav" class="layui-nav layui-nav-tree">
+
+                    <th:block th:unless="${#lists.isEmpty(menus)}">
+                        <li th:each="menu,iterStat : ${menus}" class="layui-nav-item layui-nav-tree"
+                            th:classappend="${iterStat.index eq 0} ? 'layui-nav-itemed'" th:if="${menu.pid == 0}">
+                            <!--<th:block>-->
+                            <!--一级菜单-->
+                            <a href="javascript:;">
+                                <i class="layui-icon" th:utext="${menu.icon}">&#xe609;</i>
+                                <em th:text="${menu.name}">系统设置</em>
+                            </a>
+                            <!--</th:block>-->
+                            <!-- 输出一级菜单的二级菜单 -->
+                            <dl class="layui-nav-child" th:each="submemu,iterStat2 : ${menus}"
+                                th:if="${submemu.pid == menu.id}">
+                                <dd th:class="${iterStat2.index eq 0} ? 'layui-this'">
+                                    <a href="#" th:href="@{${submemu.url}}" th:text="${submemu.name}">系统管理员</a>
+                                </dd>
+                            </dl>
+                        </li>
+                    </th:block>
+                    <!--<li class="layui-nav-item">
+                        <a href="javascript:;">
+                            <i class="layui-icon">&#xe609;</i>
+                            <em>系统设置</em>
+                        </a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="views/console.html">控制台</a></dd>
+                        </dl> 
+						<dl class="layui-nav-child">
+                            <dd><a href="views/console.html">系统管理员</a></dd>
+                        </dl>
+						<dl class="layui-nav-child">
+                            <dd><a href="views/console.html">日志管理</a></dd>
+                        </dl>
+                    </li>-->
+
+
+                </ul>
+            </div>
+        </div>
+
+        <div class="layui-body">
+             <div class="layui-tab app-container" lay-allowClose="true" lay-filter="tabs">
+                <ul id="appTabs" class="layui-tab-title custom-tab"></ul>
+                <div id="appTabPage" class="layui-tab-content"></div>
+            </div>
+        </div>
+sa
+        <div class="layui-footer">
+            <p>© 2020 edwarder <a href="http://www.edwarder.com/" target="_blank">Edwarder's Blog</a></p>
+        </div>
+
+        <div class="mobile-mask"></div>
+    </div>
+    <script src="assets/layui.js" th:src="@{/assets/layui.js}"></script>
+    <script src="js/index.js" th:src="@{/js/index.js}"></script>
+    <script src="js/index.js" th:src="@{/js/home.js}" data-main="home"></script>
+    <script src="js/layer.js" th:src="@{/assets/layer/layer.js}"></script>
+    <script th:inline="javascript">
+        //获取应用路径
+        const contextPath = [[${#request.getContextPath()}]];
+    </script>
+    <script>
+        function modify() {
+            //页面层
+            layer.open({
+                type: 2,
+                skin: 'layui-layer-rim', //加上边框
+                area: ['500px', '360px'], //宽高
+                content: contextPath + '/a/user/modify'   //跳转到后台控制器路径，从控制器路径加载html视图页面
+            });
+        }
+    </script>
+</body>
+</html>
