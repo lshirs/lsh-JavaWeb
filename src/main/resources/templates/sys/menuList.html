@@ -86,11 +86,11 @@
 <script type="text/javascript" th:src="@{/assets/layui.js}"></script>
 <script th:inline="javascript">
     /*<![CDATA[*/
-    var contextPath = [[${#request.getContextPath()}]]; //获取当前应用路径
+    const contextPath = [[${#request.getContextPath()}]]; //获取当前应用路径
     /*]]>*/
 </script>
 <script type="text/javascript">
-    var menuData;
+    let menuData;
     $(function () {
         $.ajax({
             type: "get",
@@ -105,7 +105,7 @@
         })
     })
 
-    var layout = [{name: 'id', field: 'id', headerClass: 'value_col', colClass: 'value_col'},
+    const layout = [{name: 'id', field: 'id', headerClass: 'value_col', colClass: 'value_col'},
         {name: '菜单名称', field: 'name', treeNodes: true, headerClass: 'value_col', colClass: 'value_col'},
         {name: '菜单路径', field: 'href', headerClass: 'value_col', colClass: 'value_col'},
         // {name: '排序', field: 'sort', headerClass: 'value_col', colClass: 'value_col'},
@@ -123,10 +123,10 @@
 
     layui.use(['form', 'tree', 'layer'], function () {
         // console.log(menuData);
-        var layer = layui.layer,
+        const layer = layui.layer,
             form = layui.form,
             $ = layui.jquery;
-        var menuTree = layui.treeGird({
+        const menuTree = layui.treeGird({
             elem: '#menu', //传入元素选择器
             spreadable: false, //设置是否全展开，默认不展开
             checkbox: true,

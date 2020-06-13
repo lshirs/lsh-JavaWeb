@@ -53,13 +53,13 @@
 <script th:src="@{/assets/lay/modules/layui-xtree.js}"></script>
 <script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
 <script>
-    var form = layui.form
+    const form = layui.form
         , layer = layui.layer;
 </script>
 <script th:inline="javascript">
     /*<![CDATA[*/
-    var contextPath = [[${#request.getContextPath()}]]; //获取当前应用路径
-    var roleId = [[${sysRole.id}]];
+    const contextPath = [[${#request.getContextPath()}]]; //获取当前应用路径
+    const roleId = [[${sysRole.id}]];
     /*]]>*/
 </script>
 <script type="text/javascript">
@@ -67,7 +67,7 @@
     //      正式开始
     //********************
     //layui 的 form 模块是必须的
-    var xtree;
+    let xtree;
     layui.use(['form'], function () {
         var form = layui.form;
 
@@ -82,22 +82,23 @@
 
     //异步保存
     function saveRole() {
-        var data = $("#role-form").serialize();
-        var oCks = xtree.GetChecked(); //这是方法
-        var tmpData = [];
-        var menuData = [];
-        for (var i = 0; i < oCks.length; i++) {
-            var v = oCks[i].value;
+        let i;
+        const data = $("#role-form").serialize();
+        const oCks = xtree.GetChecked(); //这是方法
+        const tmpData = [];
+        const menuData = [];
+        for ( i = 0; i < oCks.length; i++) {
+            const v = oCks[i].value;
             tmpData.push(v);
-            var pCks = xtree.GetParent(v);
+            const pCks = xtree.GetParent(v);
             if (pCks != null) {//保存父节点
                 tmpData.push(pCks.value);
             }
         }
 
         //去除重复值
-        for (var i = 0; i < tmpData.length; i++) {
-            var items = tmpData[i];
+        for (i = 0; i < tmpData.length; i++) {
+            const items = tmpData[i];
             if ($.inArray(items, menuData)) {
                 menuData.push(tmpData[i]);
             }

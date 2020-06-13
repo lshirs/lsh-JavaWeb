@@ -65,8 +65,7 @@
                                 <td th:text="${sysuser.name}">贤心</td>
                                 <td th:text="${sysuser.email}">1104975916@qq.com</td>
                                 <td th:text="${sysuser.mobile}">人生就像是一场修行</td>
-
-                                <td >0</td>
+                                <td th:text="${#dict.getDictLabel('userStatus',sysuser.status)}">0</td>
                                 <td>
                                     <a href="#" th:href="@{/a/user/form(id=${sysuser.id})}" class="layui-btn layui-btn-sm">编辑</a>
                                     <button class="layui-btn layui-btn-sm layui-btn-normal" th:if="${sysuser.status} == '2'"
@@ -116,7 +115,7 @@
         
         //修改用户状态
         function changeStatus(userId,status) {
-            var tips;
+            let tips;
             if (status == '1') {
                 tips = '启用';
             } else {

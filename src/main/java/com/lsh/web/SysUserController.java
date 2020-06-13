@@ -8,6 +8,7 @@ import com.lsh.entity.SysRole;
 import com.lsh.entity.SysUser;
 import com.lsh.service.ISysRoleService;
 import com.lsh.service.ISysUserService;
+import com.lsh.vo.ResponseResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -122,6 +123,23 @@ public class SysUserController {
         sysUserService.saveOrUpdate(sysUser);
 
         return "success";
+    }
+
+    /**
+     * 修改用户状态
+     */
+    @ResponseBody
+    @RequestMapping("/changeStatus")
+    public ResponseResult changStatus(SysUser sysUser){
+        sysUserService.updateById(sysUser);
+        ResponseResult result = null;
+        if (sysUser.getStatus() == 2){
+            result = new ResponseResult("200","账户已冻结");
+        }else{
+            result = new ResponseResult("200","账户已解锁");
+        }
+
+        return result;
     }
 
 }
