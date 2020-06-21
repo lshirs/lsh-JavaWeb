@@ -16,7 +16,7 @@ public class SysMenu {
     private String url;
     private String perms;
     private String icon;
-    private Integer sort;
+    // private Integer sort;
     private Integer createBy;
     private Date createDate;
     private Integer updateBy;

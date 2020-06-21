@@ -8,8 +8,8 @@ import com.lsh.entity.SysRole;
  *  Mapper 接口
  * </p>
  *
- * @author jzhang
- * @since 2020-05-27
+ * @author lsh
+ * @since 2020-06-04
  */
 public interface SysRoleMapper extends BaseMapper<SysRole> {
 

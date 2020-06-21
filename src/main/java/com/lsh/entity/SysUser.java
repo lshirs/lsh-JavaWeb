@@ -32,4 +32,6 @@ public class SysUser {
     //mybatis 忽略属性的数据库关系
     @TableField(exist = false)
     private List<SysRole> roles;
+
+
 }
