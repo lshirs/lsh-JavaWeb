@@ -32,8 +32,8 @@ public class SysRoleController {
 
     @RequestMapping("/list")
     public String list(Model model, Integer page, Integer size) {
-        Integer currentPage = 1;
-        Integer pageSize = 5;
+        int currentPage = 1;
+        int pageSize = 5;
         if (page != null) {
             currentPage = page;
         }

@@ -26,3 +26,8 @@ mybatis-plus:
   mapper-locations: classpath*:mapper/*Mapper.xml
   type-aliases-package: com.lsh.entity
 
+#Õº∆¨Œª÷√
+system:
+  filePath: C:\img
+  urlPath: http://localhost:${server.port}${server.servlet.context-path}
+

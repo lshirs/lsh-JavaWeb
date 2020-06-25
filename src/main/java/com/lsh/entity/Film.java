@@ -32,7 +32,7 @@ public class Film implements Serializable {
 
     private String actor;
 
-    private String dirctor;
+    private String director;
 
     private String nation;
 
@@ -42,6 +42,10 @@ public class Film implements Serializable {
     private String type;
 
     private String language;
+    /**
+     * 电影文件
+     */
+    private String filmUrl;
 
     private String summary;
 

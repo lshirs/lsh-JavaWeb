@@ -23,7 +23,8 @@ public class WebMvcConfig implements WebMvcConfigurer {
     //配置图片的访问路径
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        //访问路径： http://localhost:9000/cms/public/film/xxx.jpg
-        registry.addResourceHandler("/public/**").addResourceLocations("file:/E:/img");
+        //图片： http://localhost:9000/cms/public/film/xxx.jpg
+        //视频 :  http://localhost:9000/cms/public/video/XXX.mp4
+        registry.addResourceHandler("/public/**").addResourceLocations("file:/E:/img/");
     }
 }
