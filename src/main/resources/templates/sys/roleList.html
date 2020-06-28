@@ -55,14 +55,14 @@
 <script th:src="@{/assets/layui.all.js}"></script>
 <script th:inline="javascript">
     /*<![CDATA[*/
-    const count = [[${count}]];//总记录数
-    const curr = [[${curr}]];//当前页
-    const contextPath = [[${#request.getContextPath()}]]; //获取当前应用路径
+    var count = [[${count}]];//总记录数
+    var curr = [[${curr}]];//当前页
+    var contextPath = [[${#request.getContextPath()}]]; //获取当前应用路径
     /*]]>*/
 </script>
 <script type="text/javascript">
     layui.use('laypage', function () {
-        const laypage = layui.laypage;
+        var laypage = layui.laypage;
 
         //执行一个laypage实例
         laypage.render({

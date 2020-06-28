@@ -140,7 +140,7 @@ header .nav-bar .wrap-nav{}
 #main-content{}
 #main-content .wrap-content{margin:20px 20px 20px 0px;}
 
-#main-content .movie , #main-content .serie {background-color: rgba(0,0,0,0.6);margin-bottom: 50px;padding-bottom: 30px;border-bottom: 1px solid #666;}
+#main-content .movie , #main-content .serie {margin-bottom: 50px;padding-bottom: 30px;border-bottom: 1px solid #666;}
 
 
 #main-content .type {}
@@ -153,7 +153,7 @@ header .nav-bar .wrap-nav{}
 
 
 #main-content .post {padding:0;margin-top:40px; text-align:center;}
-#main-content .post img.thumb{height:230px;width: 100%;}
+#main-content .post img.thumb{height:360px;width: 240px;}
 #main-content .post h3{color:#fcab2b;font-weight: 500; margin-bottom:5px;font-size: 19px;}
 #main-content .post h3:hover {text-decoration: underline; }
 #main-content .post span{color:#fff; font-size: 14px;}
@@ -243,8 +243,8 @@ footer .wrap-bottom {}
 /* -------------------------------------Img-Effect------------------------------ */
 /* ---------------------------------------------------------------------------- */
 .view {
-   max-width: 160px;
-   max-height: 270px;
+   width: 240px;
+   height: 360px;
    margin: 10px;
    overflow: hidden;
    position: relative;
@@ -255,8 +255,8 @@ footer .wrap-bottom {}
 }
 
 .view .mask, .view .content {
-   width: 160px;
-   height: 270px;
+   width: 240px;
+   height: 360px;
    position: absolute;
    overflow: hidden;
    top: 0;
@@ -296,7 +296,7 @@ footer .wrap-bottom {}
 
 .effect:hover .mask {
    opacity: 1;
-   border:100px solid rgba(0,0,0,0.7);
+   border:160px solid rgba(0,0,0,0.7);
 }
 
 .effect:hover a.info {
@@ -333,11 +333,11 @@ footer .wrap-bottom {}
     text-shadow: 0px 1px 0px rgba(255,255,255, 1);
 }
 
-.page:hover, .page.gradient:hover {
+/*.page:hover, .page.gradient:hover {
     background: #fcab2b;
     background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#FEFEFE), to(#f0f0f0));
     background: -moz-linear-gradient(0% 0% 270deg,#FEFEFE, #f0f0f0);
-}
+}*/
 
 .page.active {
     border: none;
@@ -364,11 +364,11 @@ footer .wrap-bottom {}
     text-shadow: 0px 1px 0px rgba(0,0,0, .5);
 }
 
-.page:hover, .page.gradient:hover {
+/*.page:hover, .page.gradient:hover {
     background: #fcab2b;
     background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#547085), to(#3d4f5d));
     background: -moz-linear-gradient(0% 0% 270deg,#547085, #3d4f5d);
-}
+}*/
 
 .page.active {
     border: none;

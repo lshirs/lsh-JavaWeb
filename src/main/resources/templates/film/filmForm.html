@@ -8,31 +8,32 @@
     <title>影片表单</title>
 </head>
 <body class="layui-view-body">
-    <div class="layui-content">
-        <div class="layui-row">
-            <div class="layui-card">
-                <div class="layui-card-header">影片<span th:text="${film.id != null ? '编辑' : '新增'}"></span></div>
-                <form id="film-form" class="layui-form layui-card-body" action="#" method="post">
-                  <input type="hidden" name="id" th:value="${film.id}">
-                  <input type="hidden" name="filmPic" id="filmpic"  th:value="${film.filmPic }">
-                  <div class="layui-form-item">
+<div class="layui-content">
+    <div class="layui-row">
+        <div class="layui-card">
+            <div class="layui-card-header">影片<span th:text="${film.id != null ? '编辑' : '新增'}"></span></div>
+            <form id="film-form" class="layui-form layui-card-body" action="#" method="post">
+                <input type="hidden" name="id" th:value="${film.id}">
+                <input type="hidden" name="filmPic" id="filmpic"  th:value="${film.filmPic }">
+                <input type="hidden" name="filmUrl" id="filmUrl"  th:value="${film.filmUrl }">
+                <div class="layui-form-item">
                     <label class="layui-form-label">影片</label>
                     <div class="layui-input-block">
-
-                      <input type="text" name="filmName" required th:value="${film.filmName}"  lay-verify="required" placeholder="影片名" autocomplete="off" class="layui-input">
+                        <input type="text" name="filmName" required th:value="${film.filmName}"  lay-verify="required" placeholder="影片名" autocomplete="off" class="layui-input">
                     </div>
-                  </div>
-                  <div class="layui-form-item">
+                </div>
+                <div class="layui-form-item">
                     <label class="layui-form-label">海报</label>
                     <div class="layui-input-block">
                         <div id="queue">
-                            <img alt="海报" th:style="${(film.filmPic != null and film.filmPic != '') ? '' : 'display:none'}" width="240px" id="queue_img" height="240px" th:src="@{'/public/film/' + ${film.filmPic}}" >
+                            <img alt="海报" th:style="${(film.filmPic != null and film.filmPic != '') ? '' : 'display:none'}" width="25%" id="queue_img" height="25%" th:src="@{'/public/film/' + ${film.filmPic}}" >
                         </div><br>
                         <button type="button" class="layui-btn" id="film-pic">
                             <i class="layui-icon">&#xe67c;</i>上传图片
                         </button>
                     </div>
-                  </div>
+
+
                     <div class="layui-form-item">
                         <label class="layui-form-label">导演</label>
                         <div class="layui-input-block">
@@ -41,6 +42,12 @@
                     </div>
                     <div class="layui-form-item">
                         <label class="layui-form-label">主演</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="actor" required th:value="${film.actor}"  lay-verify="required" placeholder="影片名" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">电影地址</label>
                         <div class="layui-input-block">
                             <input type="text" name="actor" required th:value="${film.actor}"  lay-verify="required" placeholder="影片名" autocomplete="off" class="layui-input">
                         </div>
@@ -69,107 +76,137 @@
                             </select>
                         </div>
                     </div>
-                    <div class="layui-form-item">
-                        <label class="layui-form-label">上映时间</label>
-                        <div class="layui-input-block">
-                            <input type="text" name="releaseTime" required th:value="${film.releaseTime}"  lay-verify="required" placeholder="影片名" autocomplete="off" class="layui-input">
-                        </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">上传视频</label>
+                    <button type="button" class="layui-btn" id="film-video">
+                        <i class="layui-icon">&#xe67c;</i>上传视频
+                    </button>
+
+                    <div class="layui-progress layui-progress-big" lay-showpercent="true" lay-filter="demo">
+                        <div class="layui-progress-bar layui-bg-red" lay-percent="0%"></div>
                     </div>
-                  <div class="layui-form-item">
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">上映时间</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="releaseTime" required th:value="${film.releaseTime}"  lay-verify="required" placeholder="影片名" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
                     <label class="layui-form-label">简介</label>
                     <div class="layui-input-block">
                         <div id="remark" th:name="summary" th:utext="${film.summary}"></div>
                         <textarea th:hidden="summary" th:name="summary" id="summary" th:utext="${film.summary}"></textarea>
                     </div>
-                  </div>
-                  <div class="layui-form-item">
+                </div>
+                <div class="layui-form-item">
                     <div class="layui-input-block">
-                      <button type="button" class="layui-btn layui-btn-blue" onclick="saveFilm()">保存</button>
-                      <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                        <button type="button" class="layui-btn layui-btn-blue" onclick="saveFilm()">保存</button>
+                        <button type="reset" class="layui-btn layui-btn-primary">重置</button>
                     </div>
-                  </div>
-                </form>  
-            </div>
+                </div>
+            </form>
         </div>
     </div>
-    <script th:src="@{/assets/layui.all.js}"></script>
-    <script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
-    <!--富文本编辑器wangEditor-->
-    <script th:src="@{/assets/wangeditor/wangEditor.min.js}"></script>
-    <script th:inline="javascript">
-        /*<![CDATA[*/
-        const contextPath = [[${#request.getContextPath()}]]; //获取当前应用路径
-        /*]]>*/
-    </script>
-    <script>
-        const form = layui.form
-            , layer = layui.layer;
-    </script>
-    <!--wangEditor 富文本编辑器-->
-    <script type="text/javascript">
-        const E = window.wangEditor;
-        const editor = new E('#remark');
-        const text_summary = $('#summary');
-        editor.customConfig.onchange = function (html) {
-            // 监控变化，同步更新到 textarea
-            text_summary.val(html)
+</div>
+<script th:src="@{/assets/layui.all.js}"></script>
+<script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+<!--富文本编辑器wangEditor-->
+<script th:src="@{/assets/wangeditor/wangEditor.min.js}"></script>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    const contextPath = [[${#request.getContextPath()}]]; //获取当前应用路径
+    /*]]>*/
+</script>
+<script>
+    const form = layui.form
+        , layer = layui.layer;
+</script>
+<!--wangEditor 富文本编辑器-->
+<script type="text/javascript">
+    const E = window.wangEditor;
+    const editor = new E('#remark');
+    const text_summary = $('#summary');
+    editor.customConfig.onchange = function (html) {
+        // 监控变化，同步更新到 textarea
+        text_summary.val(html)
+    }
+    // 配置服务器端地址
+    editor.customConfig.uploadImgServer = contextPath + '/a/upload/file'
+    //配置指定文件名
+    editor.customConfig.uploadFileName = 'file'
+    editor.customConfig.uploadImgHooks = {
+        customInsert: function (insertImg, result, editor) {
+            // 图片上传并返回结果，自定义插入图片的事件（而不是编辑器自动插入图片！！！）
+            // insertImg 是插入图片的函数，editor 是编辑器对象，result 是服务器端返回的结果
+            const url = result.data[0];
+            insertImg(url);
         }
-        // 配置服务器端地址
-        editor.customConfig.uploadImgServer = contextPath + '/a/upload/file'
-        //配置指定文件名
-        editor.customConfig.uploadFileName = 'file'
-        editor.customConfig.uploadImgHooks = {
-            customInsert: function (insertImg, result, editor) {
-                // 图片上传并返回结果，自定义插入图片的事件（而不是编辑器自动插入图片！！！）
-                // insertImg 是插入图片的函数，editor 是编辑器对象，result 是服务器端返回的结果
-                const url = result.data[0];
-                insertImg(url);
+    }
+    /*加载插件*/
+    editor.create()
+</script>
+<!--图片上传-->
+<script type="text/javascript">
+    layui.use('upload', function(){
+        const upload = layui.upload;
+
+        //执行实例
+        const uploadInst = upload.render({
+            elem: '#film-pic' //绑定元素
+            , url: contextPath + '/a/upload/file' //上传接口
+            , done: function (res) {
+                //上传完毕回调
+                //将图片路径放到film实体的图片路径属性中
+                console.log(res.data);
+                $("#filmpic").val(res.data[1]);
+                //将图片路径放到img标签中
+                $("#queue_img").css("display", "block");
+                $("#queue_img").attr("src", contextPath + "/public/film/" + res.data[1]);
             }
-        }
-        /*加载插件*/
-        editor.create()
-    </script>
-    <!--图片上传-->
-    <script type="text/javascript">
-        layui.use('upload', function(){
-            const upload = layui.upload;
-
-            //执行实例
-            const uploadInst = upload.render({
-                elem: '#film-pic' //绑定元素
-                , url: contextPath + '/a/upload/file' //上传接口
-                , done: function (res) {
-                    //上传完毕回调
-                    //将图片路径放到film实体的图片路径属性中
-                    console.log(res.data);
-                    $("#filmpic").val(res.data[1]);
-                    //将图片路径放到img标签中
-                    $("#queue_img").css("display", "block");
-                    $("#queue_img").attr("src", contextPath + "/public/film/" + res.data[1]);
-                }
-                , error: function (res) {
-                    //请求异常回调
-                    layer.msg(res.data);
-                }
-            });
+            , error: function (res) {
+                //请求异常回调
+                layer.msg(res.data);
+            }
         });
+        const uploadVideo = upload.render({
+            elem: '#film-video'
+            ,url: contextPath + '/a/upload/video'
+            , accept: 'video'
+            ,done: function(res){
+                console.log(res.data);
+                $("#filmUrl").val(res.data[0]);
+                //上传完毕回调
+                layer.msg("上传成功");
+            }
+            ,progress:function(value){//上传进度回调 value进度值
+                element.progress('demo', value+'%')//设置页面进度条
+            }
+            , error: function (res) {
+                //请求异常回调
+                layer.msg(res.data);
+                layer.msg("上传失败");}
+        });
+    });
 
-    </script>
-    <!--异步保存-->
-    <script type="text/javascript">
-        function saveFilm() {
-            const data = $("#film-form").serialize();
-            $.ajax({
-                type : "post",
-                url : contextPath + "/a/film/save",
-                data : data,
-                success : function(jsonData) {
-                    layer.msg('保存成功', {icon: 1},function () {
-                        location.href = contextPath + "/a/film/list"
-                    });
-                }
-            })
-        }
-    </script>
+</script>
+<!--异步保存-->
+<script type="text/javascript">
+    function saveFilm() {
+        const data = $("#film-form").serialize();
+        $.ajax({
+            type : "post",
+            url : contextPath + "/a/film/save",
+            data : data,
+
+            success : function(jsonData) {
+                layer.msg('保存成功', {icon: 1},function () {
+                    location.href = contextPath + "/a/film/list"
+                });
+            }
+        })
+    }
+</script>
 </body>
 </html>

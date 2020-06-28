@@ -8,6 +8,6 @@ import org.springframework.stereotype.Component;
 @Component
 @ConfigurationProperties(prefix = "system")
 public class AppConfig {
-    private String filePath;
-    private String urlPath;
+    private String filePath;//文件存储路径
+    private String urlPath;//文件访问路径
 }

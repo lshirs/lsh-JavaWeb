@@ -1,0 +1,141 @@
+* {
+				padding: 0;
+				margin: 0 auto;
+			}
+			
+			.demo {
+				background-image: url(../images/bg-down.png);
+				width: 100%;
+				height: 2000px;
+				min-width: 1900px;
+			}
+			
+			.video-title{
+				margin-top:80px;
+				margin-left:320px;
+				height: 40px;
+				
+			
+			    color: #FFFFFF;
+				
+			}
+			#title01{
+				color: #FFFFFF;
+				}
+			
+			.video{
+				margin-top:10px;
+				margin-left:320px;
+				
+				/* background-color: #C0392B; */
+				
+			}
+				
+			.Video-introduction{
+			margin-left:320px;
+			/* 以上面距离设置 */
+			margin-top:100px; 
+			background-image: url(../images/vid-bg-poster.png);
+			width: 1270px;
+			height: 414px;
+			
+			}
+			.poster{
+				margin-top:-50px;
+				margin-left:40px;
+				/* background-color: #009688; */
+				width:240px;
+				height: 414px;
+			}
+			.movie-img{
+				/* background-color: #FD482C; */
+				width: 240px;
+				height: 360px;
+				box-shadow:2px 2px 10px #001529;
+			}
+			.introduction{
+				margin-top: 40px;
+				margin-left: 40px;
+				/* background-color: #0000FF; */
+				width: 920px;
+				height: 360px;
+			}
+			.introduction-font{
+				margin-right: 40px;
+				line-height:42px;
+				font-size: 16px;
+			}
+			
+			.leixing{
+				
+				/* background-color: #540a03; */
+				height: 30px;
+				letter-spacing: 6px;
+				font-size: 20px;
+				color: #FFFFFF;
+				width: 900px;
+				overflow:hidden; 
+				white-space:nowrap; 
+				text-overflow:ellipsis;
+			}
+			
+			#leixing-title{
+				letter-spacing: 10px;
+				font-size: 22px;
+				font-weight: bold;
+				color: #FFFFFF;
+			}
+			.zhuyan{
+				margin-top: 20px;
+				background-color: #54 0a03; 
+			}
+			.xiangqi{
+				margin-top: 20px;
+				background-color: #54 0a03; 
+			}
+			.xiangqi-01{
+				/* background-color: #540a03; */
+				height: 240px;
+				letter-spacing: 6px;
+				font-size: 20px;
+				color: #FFFFFF;
+				
+			}
+			.bottom_inner_010{
+				margin-top: 316px;
+				height: 240px;
+				background-image: url(../images/foot.png); 
+				opacity:0.8; 
+				    
+			}
+			.top_nav{
+				background-image: url(../images/daohang.png);
+				min-width: 1900px; 
+				text-align: center;
+			}
+			.nav_iteam{
+				margin-left:100px ;
+			}
+			.nav_iteam_1{
+				margin-left:140px ;
+			}
+			
+			.top_01{
+				height:6px;background-image: url(../images/light.png);
+			}
+			.bottom_inner_010_1{
+				 margin-left:364px ;
+				  height: 20px;
+			}
+			.bottom_inner_010_2{
+				margin-left:207px ; height: 20px;
+			}
+			.bottom_inner_010_3{
+				margin-left: 360px;margin-top: 46px; height: 80px;
+			}
+			.bottom_inner_010_4{
+				margin-left: 364px; height: 20px;
+			}
+			.bottom_inner_010_5{
+				margin-left: 62px; height: 20px; margin-left: 100px;
+			}

@@ -1,161 +1,97 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-	<!-- Basic Page Needs
-  ================================================== -->
-	<meta charset="utf-8">
-	<title>天悦电影网</title>
-	<meta name="description" content="edwarder.com">
-	<meta name="author" content="www.edwarder.com">
-
-	<!-- Mobile Specific Metas
-  ================================================== -->
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-	<!-- CSS
-  ================================================== -->
-	<link rel="stylesheet" th:href="@{/front/css/zerogrid.css}">
-	<link rel="stylesheet" th:href="@{/front/css/style.css}">
-	<link rel="stylesheet" th:href="@{/front/css/responsive.css}">
-</head>
+	<head>
+		<meta charset="utf-8">
+		<link rel="stylesheet" type="text/css" th:href="@{/assets/css/layui1.css}" />
+		<script th:src="@{/front/js/jquery.min.js}"></script>
+		<link rel="stylesheet" type="text/css" th:href="@{/front/css/Video.css}"/>
+		<title th:text="'正在播放《'+${film.filmName}+'》--光视影线'">正在播放《战地风云》--光视影线</title>
+		
+	</head>
 	<body>
-	<div class="wrap-body">
-
-		<!--////////////////////////////////////Header-->
-		<div th:replace="front/common/nav :: nav"></div>
-
-
-		<!--////////////////////////////////////Container-->
-		<section id="container">
-			<div class="wrap-container zerogrid">
-				<div id="main-content" class="col-2-3">
-					<div class="wrap-content">
-						<article>
-							<div class="art-header">
-								<div class="col-1-3">
-									<div class="wrap-col">
-										<img style="width: 240px;height: 280px;" th:src="@{'/public/film/' + ${film.filmPic}}"  />
-									</div>
-								</div>
-								<div class="col-2-3">
-									<div class="wrap-col">
-										<ul>
-											<li><p>片名: <a href="#" th:text="${film.filmName}">Action</a></p></li>
-											<li><p>主演: <a href="#" th:text="${film.actor}">沈腾 Teng Shen</a></p></li>
-											<li><p>导演: <a href="#" th:text="${film.director}">闫非 Fei Yan / 彭大魔 Damo Peng</a></p></li>
-											<li><p>产地: <a href="#" th:text="${film.nation}">中国大陆</a></p></li>
-											<li><p>语言: <a href="#" th:text="${#dict.getDictLabel('language',film.language)}">汉语普通话</a></p></li>
-											<li><p>上映时间: <a href="#" th:text="${film.releaseTime}">2018-07-27(中国大陆)</a></p></li>
-											<li class="star"><a href="#"><img th:src="@{/front/images/star.png}" /></a></li>
-										</ul>
-									</div>
-								</div>
-								<div class="clear"></div>
-							</div>
-							<div class="art-content" th:utext="${film.summary}"></div>
-						</article>
-						<div class="widget wid-related">
-							<div class="wid-header">
-								<h5>Related Post</h5>
-							</div>
-							<div class="wid-content">
-								<div class="row">
-									<div class="col-1-3">
-										<div class="wrap-col">
-											<a href="#"><img th:src="@{/front/images/10.jpg}" /></a>
-											<a href="#"><h4>Vero eros et accumsan et iusto odio </h4></a>
-										</div>
-									</div>
-									<div class="col-1-3">
-										<div class="wrap-col">
-											<a href="#"><img th:src="@{/front/images/13.jpg}" /></a>
-											<a href="#"><h4>Vero eros et accumsan et iusto odio </h4></a>
-										</div>
-									</div>
-									<div class="col-1-3">
-										<div class="wrap-col">
-											<a href="#"><img th:src="@{/front/images/6.jpg}" /></a>
-											<a href="#"><h4>Vero eros et accumsan et iusto odio </h4></a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
+		<div class="demo">
+			<!-- 导航栏 -->
+			<div class="nav" >
+				<ul class="layui-nav top_nav" lay-filter="" >
+					<li class="layui-nav-item nav_iteam" ><img th:src="@{/front/images/logo.png}"></li>
+					<li class="layui-nav-item nav_iteam_1" style=""><a th:href="@{movie01.html}">首页</a></li>
+					<li class="layui-nav-item nav_iteam" ><a th:href="@{movie02.html}">战争/科幻</a></li>
+					<li class="layui-nav-item nav_iteam" ><a th:href="@{movie03.html}">动作/犯罪</a></li>
+					<li class="layui-nav-item nav_iteam" ><a th:href="@{movie04.html}">武侠/历史</a></li>
+					<li class="layui-nav-item nav_iteam"><a >其他电影</a></li>
+					<!--<li class="layui-nav-item nav_iteam"  ><a href="javascrip:void(0)" onclick="login()"><i class="layui-icon layui-icon-user" style="font-size: 26px; color: #FFFFFF;"></i>  yanxiang   ,退出</a></li>-->
+				</ul>
+				<div class="top_01">
 				</div>
-				<div id="sidebar" class="col-1-3">
-					<div class="wrap-sidebar">
-						<!---- Start Widget ---->
-						<div class="widget wid-new-updates">
-							<div class="wid-header">
-								<h5>Hot Updates !</h5>
-							</div>
-							<div class="wid-content">
-								<ul>
-								<li><a href="#">Mad Max: Fury Road</a><span><img th:src="@{/front/images/hot.png}" /></span></li>
-								<li><a href="#">The Age of Adaline</a><span><img th:src="@{/front/images/hot.png}" /></span></li>
-								<li><a href="#">Pound of Flesh</a><span><img th:src="@{/front/images/hot.png}" /></span></li>
-								<li><a href="#">Bloodbath Island</a><span><img th:src="@{/front/images/hot.png}" /></span></li>
-								<li><a href="#">Pound of Flesh</a><span><img th:src="@{/front/images/hot.png}" /></span></li>
-								</ul>
-							</div>
-						</div>
+				
+			<!--影片标题-->
+			<div class="video-title">
+				<h1 th:text="'正在播放《'+${film.filmName}+'》--光视影线'">正在播放<a id="title01" href="#" >《战地风云》</a></h1>
+			</div>
+			<!-- Video -->
+			<div class="video">
+				<video width="1280" height="720" controls autoplay>
+					
+				  <source th:src="@{'/public/video/' + ${film.filmUrl}}" type="video/mp4">
 
-						<div class="widget wid-post">
-							<div class="wid-header">
-								<h5>Today's movies</h5>
+				您的浏览器不支持Video标签。
+				</video>
+			</div>
+			
+			<!-- 影片介绍 -->
+			<div class="Video-introduction" >
+				<div class="layui-row Video-poster"> 
+					<!-- 影片（电影+影名+年份） -->
+				    <div class="layui-col-md4 poster">
+						<!--电影图库-->
+						<div class="layui-row movie-img">
+							<img th:src="@{'/public/film/' + ${film.filmPic}}" >
+						</div>
+						<!--影名+年份-->
+						<div class="layui-row" style="margin-top: 10px;">
+							<!--影名-->
+							<div class="layui-col-md9">
+							      <a href="" ><h2 th:text="${film.filmName}" style="color: #FFFFFF;font-weight:bold;">战争风云</h2></a>
 							</div>
-							<div class="wid-content">
-								<div class="post">
-									<a href="#"><img th:src="@{/front/images/1.jpg}"/></a>
-									<div class="wrapper">
-									  <a href="#"><h6>A Blue Morning</h6></a>
-									  <p>March 1, 2015</p>
-									  <a href="#"><img th:src="@{/front/images/star.png}" /></a>
-									</div>
-								</div>
+							<!--年份-->
+							<div class="layui-col-md3"style="color: #bfc0c6;margin-top: 4px;" >
+							      <h2 th:text="'('+${film.releaseTime}+')'">(2020)</h2>
 							</div>
 						</div>
-						<!---- Start Widget ---->
-						<!--<div class="widget wid-last-updates">
-							<div class="wid-header">
-								<h5>Lastest Updates</h5>
+				    </div>
+					
+					<!--右边详情介绍-->
+				    <div class="layui-col-md8 introduction " >
+						<!--类型-->
+						<div class="layui-row leixing">
+							<span th:id="leixing-title">类型:</span>
+							<span th:text="${#dict.getDictLabel('filmtype',film.type)}">科幻/战争</span>
+						</div>
+						
+						<!--主演-->
+						<div class="layui-row zhuyan">
+							<div class="layui-row leixing">
+								<span th:id="leixing-title">主演:</span>
+								<span th:text="${film.actor}">小罗伯特·唐尼，克里斯·埃文斯，马克·鲁法洛， 克里斯·海姆斯沃斯，斯嘉丽·约翰逊 ... ...</span>
+						</div>
+						
+						<!--详情-->
+						<div class="layui-row xiangqi ">
+							<div class="layui-row xiangqi-01" th:utext="${film.summary}">
+
 							</div>
-							<div class="wid-content">
-								<div class="post">
-									<a href="#"><img src="images/1.jpg"/></a>
-									<div class="wrapper">
-									  <a href="#"><h6>A Blue Morning</h6></a>
-									  <p>March 1, 2015</p>
-									  <a href="#"><img src="images/star.png" /></a>
-									</div>
-								</div>
-								<div class="post">
-									<a href="#"><img src="images/2.jpg"/></a>
-									<div class="wrapper">
-									 <a href="#"><h6>A Blue Morning</h6></a>
-									  <p>March 1, 2015</p>
-									  <a href="#"><img src="images/star.png" /></a>
-									</div>
-								</div>
-								<div class="post">
-									<a href="#"><img src="images/3.jpg"/></a>
-									<div class="wrapper">
-									 <a href="#"><h6>A Blue Morning</h6></a>
-									  <p>March 1, 2015</p>
-									  <a href="#"><img src="images/star.png" /></a>
-									</div>
-								</div>
-							</div>
-						</div>-->
+						</div>
+						 
+							  
+					</div>
+						  
 					</div>
 				</div>
 			</div>
-		</section>
+			
+			<!-- 页脚 -->
 
-		<!--////////////////////////////////////Footer-->
-		<div th:replace="front/common/footer :: footer"></div>
+			</div>
 		</div>
-
 	</body>
 </html>
