@@ -86,14 +86,13 @@
 								<div class="row">
 									<div class="col-1-6" th:each="film:${page.records}">
 										<div class="wrap-col">
-											<div class="post">
-												<div class="view effect">
-													<img class="thumb" th:src="@{'/public/film/' + ${film.filmPic}}"
-														th:width="240px" th:height="360px" />
+											<div class="post"><!-- 数组非空判断 not ${#lists.isEmpty(film.filmPic)}-->
+												<div class="view effect" >
+													<img th:if="not ${#lists.isEmpty(film.filmPic)}" class="thumb" th:src="@{'/public/film/' + ${film.filmPic}}" th:width="240px" th:height="360px" />
+													<img th:unless="not ${#lists.isEmpty(film.filmPic)}" class="thumb" th:src="@{/front/images/poster-default.png}" th:width="240px" th:height="360px" />
 													<div class="mask">
-														<a th:href="@{/f/film/details(id=${film.id})}" class="info"
-															title="Full Image"><img
-																th:src="@{/front/images/play_button_64.png}" /></a>
+														<a th:href="@{/f/film/details(id=${film.id})}" class="info" title="Full Image">
+															<img th:src="@{/front/images/play_button_64.png}"/></a>
 													</div>
 
 												</div>

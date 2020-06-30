@@ -14,8 +14,8 @@ input, textarea, select {margin:0; padding:0px;}
 /* ---------------------------------------------------------------------------- */
 
 html { -webkit-text-size-adjust: none;}
-.video embed,.video object,.video iframe { width: 100%;  height: auto;}
-img{max-width:100%;	height: auto;width: auto\9; /* ie8 */}
+.video embed,.video object,.video iframe { width: 170%;  height: auto;}
+img{max-width:170%;	height: auto;width: auto\9; /* ie8 */}
 
 a{color: #4C4C4C;text-decoration: none;}
 a:hover {opacity: 0.9; text-decoration: none;}
@@ -288,7 +288,7 @@ footer .wrap-bottom {}
 .effect a.info {
    position:relative;
    top:0px;
-   right: 50px;
+   right: 65px;
    opacity:0;
    transform:scale(0,0);
    transition: transform 0.2s 0.1s ease-in, opacity 0.1s ease-in-out;
