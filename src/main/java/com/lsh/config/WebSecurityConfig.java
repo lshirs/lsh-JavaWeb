@@ -40,6 +40,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()    //验证请求
                 .antMatchers("/assets/**","/js/**","/public/**","/front/**").permitAll() //放行部分合法路径
                 .antMatchers("/f/**").permitAll() //放行部分合法路径
+                .antMatchers("/trace/users/**").permitAll()
+                // swagger start
+                .antMatchers("/swagger-ui.html").permitAll()
+                .antMatchers("/swagger-resources/**").permitAll()
+                .antMatchers("/images/**").permitAll()
+                .antMatchers("/webjars/**").permitAll()
+                .antMatchers("/v2/api-docs").permitAll()
+                .antMatchers("/configuration/ui").permitAll()
+                .antMatchers("/configuration/security").permitAll()
                 .anyRequest().authenticated() //任何请求,登录后可以访问
                 .and()
                 .formLogin()
@@ -51,7 +60,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .logout().permitAll().invalidateHttpSession(true)
                 .and().sessionManagement().maximumSessions(10).expiredUrl("/a/user/login"); //注销行为任意访问
 
+
+
     }
+
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception{
         auth.userDetailsService(customUserService()).passwordEncoder(new BCryptPasswordEncoder());
