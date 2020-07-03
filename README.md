@@ -14,10 +14,10 @@
 
 ### 组员
 
-* **前端:**    			薛某
-* **设计页面:**         颜某
-* **后端及数据库:** Me
+* **前端:**    			薛良波
+* **设计页面:**         颜翔
+* **后端及数据库:** 林司昊
 
 [有意联系者][www.lshirs@163.com]
 
-![yanx](./src\main\resources\static\front\images\yanx.png)
+![yanx](./src/main/resources/static/front/images/yanx.png)
