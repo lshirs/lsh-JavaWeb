@@ -20,3 +20,4 @@
 
 [有意联系者][www.lshirs@163.com]
 
+![yanx](./src\main\resources\static\front\images\yanx.png)

@@ -139,3 +139,14 @@
 			.bottom_inner_010_5{
 				margin-left: 62px; height: 20px; margin-left: 100px;
 			}
+.nav-top{
+	text-align: center;
+	background-image: url(../images/daohang.png);
+	min-width: 1900px;
+}
+.nav-item-top{
+	margin-left:100px ;
+}
+.nav-item-top02{
+	margin-left:140px;
+}

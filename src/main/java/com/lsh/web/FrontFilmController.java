@@ -38,11 +38,17 @@ public class FrontFilmController {
         return "front/index";
 
     }
+
+    @RequestMapping("/404")
+    public  String list() {return "front/404";}
+
+
     @RequestMapping("/details")
     public String details(Model model, Film film) {
         model.addAttribute("film",film);
         return "front/filmDetails";
     }
+
     @RequestMapping("/type1")
     public String type1(Model model,Integer typeNo, Integer pageNo){
         int current = 1;

@@ -1,115 +1,120 @@
 <!DOCTYPE html>
 <html lang="zh-CN" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 
 <!--${#httpServletRequest.getParameter('typeNo')}-->
-	<head>
-		<meta charset="utf-8">
-		<title>战争·科幻</title>
-		<link rel="stylesheet" type="text/css" th:href="@{/assets/css/layui1.css}" />
-		<link rel="stylesheet" type="text/css" th:href="@{/front/css/style02.css}"/>
-		<link rel="stylesheet" type="text/css" th:href="@{/assets/css/layui.css}" />
-		<link rel="stylesheet" type="text/css" th:href="@{/assets/css/view.css}" />
-		<script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
-		<link rel="stylesheet" th:href="@{/front/css/zerogrid.css}">
-		<link rel="stylesheet" th:href="@{/front/css/style.css}">
-		<link rel="stylesheet" th:href="@{/front/css/responsive.css}">
-	</head>
-	<body>
-
-
-		<div  class="demo" th:style="'background-image: url('+@{/front/images/new-bg-2.png}+');'">
+<head>
+	<meta charset="utf-8">
+	<title>战争·科幻</title>
+	<link rel="stylesheet" type="text/css" th:href="@{/assets/css/layui1.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/front/css/style02.css}"/>
+	<link rel="stylesheet" type="text/css" th:href="@{/assets/css/view.css}" />
+	<script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+	<link rel="stylesheet" th:href="@{/front/css/zerogrid.css}">
+	<link rel="stylesheet" th:href="@{/front/css/style.css}">
+	<link rel="stylesheet" th:href="@{/front/css/responsive.css}">
+</head>
+<body>
 
 
 
-			<!-- 导航栏 -->
-			<div class="nav">
-				<ul class="layui-nav nav-top" lay-filter="">
-					<li class="layui-nav-item nav-item-top"><img th:src="@{/front/images/logo.png}" th:style=""></li>
-					<li class="layui-nav-item nav-item-top02"><a th:href="@{/f/film/index}">首页</a></li>
-					<li class="layui-nav-item nav-item-top"><a th:href="@{/f/film/type1(typeNo=${'1'})}">战争/科幻</a></li>
-					<li class="layui-nav-item nav-item-top"><a th:href="@{/f/film/type2(typeNo=${'2'})}">武侠/历史</a></li>
-					<li class="layui-nav-item nav-item-top"><a th:href="@{/f/film/type3(typeNo=${'3'})}">动作/犯罪</a></li>
-					<li class="layui-nav-item nav-item-top"><a th:href="@{/f/film/type4(typeNo=${'4'})}">恐怖/惊悚</a></li>
-
-				</ul>
-				<div class="top_bommer">
-				</div>
-			</div>
-		<!-- 文字标题部分 -->
-			<div class="title" >
-				<div  class="top_title_1" >
+<div  class="demo" th:style="'background-image: url('+@{/front/images/new-bg-2.png}+');'">
 
 
-				</div>
-				
-			</div>
-			<div class="inner" >
-				<div class="inner_title" >
-					
-				</div>
-			</div>
-			<!-- 视频列表部分 -->
-			<div class="wrap-container zerogrid">
-				<div id="main-content" class="col-full">
-					<div class="wrap-content">
-						<div class="movie">
-							<div class="row type">
-								<div class="row">
-									<div class="col-1-6" th:each="film:${page.records}">
-										<div class="wrap-col">
-											<div class="post">
-												<div class="view effect">
-													<img class="thumb" th:src="@{'/public/film/' + ${film.filmPic}}"
-														 th:width="240px" th:height="360px" />
-													<div class="mask">
-														<a th:href="@{/f/film/details(id=${film.id})}" class="info"
-														   title="Full Image"><img
-																th:src="@{/front/images/play_button_64.png}" /></a>
-													</div>
 
-												</div>
-												<div class="clear"></div>
-												<a th:href="@{/f/film/details(id=${film.id})}">
-													<h3 th:text="${film.filmName}">战狼2</h3>
-												</a>
-												<span th:text="${film.releaseTime}">吴京</span>
+	<!-- 导航栏 -->
+	<div class="nav">
+		<ul class="layui-nav nav-top" lay-filter="">
+			<li class="layui-nav-item nav-item-top"><img th:style="@{margin-top:20px;}" th:src="@{/front/images/logo.png}"></li>
+			<li class="layui-nav-item nav-item-top02"><a th:href="@{/f/film/index}">首页</a></li>
+			<li class="layui-nav-item nav-item-top"><a th:href="@{/f/film/type1(typeNo=${'1'})}">战争/科幻</a></li>
+			<li class="layui-nav-item nav-item-top"><a th:href="@{/f/film/type2(typeNo=${'2'})}">武侠/历史</a></li>
+			<li class="layui-nav-item nav-item-top"><a th:href="@{/f/film/type3(typeNo=${'3'})}">动作/犯罪</a></li>
+			<li class="layui-nav-item nav-item-top"><a th:href="@{/f/film/type4(typeNo=${'4'})}">恐怖/惊悚</a></li>
+
+		</ul>
+		<div class="top_bommer">
+		</div>
+	</div>
+	<!-- 文字标题部分 -->
+	<div class="title" >
+		<div  class="top_title_1" >
+
+
+		</div>
+
+	</div>
+	<div class="inner" >
+		<div class="inner_title" >
+
+		</div>
+	</div>
+	<!-- 视频列表部分 -->
+	<div class="wrap-container zerogrid">
+		<div id="main-content" class="col-full">
+			<div class="wrap-content">
+				<div class="movie">
+					<div class="row type">
+						<div class="row">
+							<div class="col-1-6" th:each="film:${page.records}">
+								<div class="wrap-col">
+									<div class="post">
+										<div class="view effect">
+											<img th:if="not ${#lists.isEmpty(film.filmPic)}" class="thumb" th:src="@{'/public/film/' + ${film.filmPic}}" th:width="240px" th:height="360px" />
+											<img th:unless="not ${#lists.isEmpty(film.filmPic)}" class="thumb" th:src="@{/front/images/poster-default.png}" th:width="240px" th:height="360px" />
+											<div class="mask">
+												<a th:if="not ${#lists.isEmpty(film.filmUrl)}" th:href="@{/f/film/details(id=${film.id})}" class="info" title="Full Image">
+													<img th:src="@{/front/images/play_button_64.png}"/></a>
+												<a th:unless="not ${#lists.isEmpty(film.filmUrl)}" th:href="@{/f/film/404}" class="info" title="Full Image">
+													<img th:src="@{/front/images/play_button_64.png}"/></a>
 											</div>
+
 										</div>
+										<div class="clear"></div>
+
+										<a th:if="not ${#lists.isEmpty(film.filmUrl)}" th:href="@{/f/film/details(id=${film.id})}">
+											<h3 th:text="${film.filmName}">战狼2</h3>
+										</a>
+										<a th:unless="not ${#lists.isEmpty(film.filmUrl)}" th:href="@{/f/film/404}">
+											<h3 th:text="${film.filmName}">战狼2</h3>
+										</a>
+										<span th:text="${film.releaseTime}">吴京</span>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-
-				<center>
-					<div class="pagination">
-						<a href="javascript:;" th:disabled="${page.current == 1 ? 'true' : 'false'}"
-						   th:class="${page.current == 1 ? 'page active' : 'page gradient'}"
-						   th:href="@{/f/film/index(pageNo=1)}">首页</a>
-
-						<a th:each="i : ${#numbers.sequence(1,page.pages)}" href="#"
-						   th:class="${page.current == i ? 'page active' : 'page gradient'}"
-						   th:text="${i}" th:href="@{/f/film/index(pageNo=${i})}" >1</a>
-
-						<a href="javascript:;" th:disabled="${page.current == page.pages ? 'true' : false}"
-						   th:class="${page.current == page.pages ? 'page active' : 'page gradient'}" th:href="@{/f/film/index(pageNo=${page.pages})}">尾页</a>
-					</div></center>
-
-
-
-			<!-- 页脚 -->
-
-				<div class="bottom_inner_4" >
-					<img th:src="@{/front/images/talkme.png}" class="bottom_inner_4_1" >
-					<img th:src="@{/front/images/aboutWe.png}" class="bottom_inner_4_2"  >
-					<img th:src="@{/front/images/foot-log.png}" class="bottom_inner_4_3" >
-					<img th:src="@{/front/images/beian.png}" class="bottom_inner_4_4" >
-					<img th:src="@{/front/images/repoter.png}" class="bottom_inner_4_5"  >
-				</div>
 			</div>
 		</div>
 
-	</body>
+		<center>
+			<div class="pagination">
+				<a href="javascript:;" th:disabled="${page.current == 1 ? 'true' : 'false'}"
+				   th:class="${page.current == 1 ? 'page active' : 'page gradient'}"
+				   th:href="@{/f/film/type1(pageNo=1,typeNo=1)}">首页</a>
+
+				<a th:each="i : ${#numbers.sequence(1,page.pages)}" href="#"
+				   th:class="${page.current == i ? 'page active' : 'page gradient'}"
+				   th:text="${i}" th:href="@{/f/film/type1(pageNo=${i},typeNo=1)}" >1</a>
+
+				<a href="javascript:;" th:disabled="${page.current == page.pages ? 'true' : false}"
+				   th:class="${page.current == page.pages ? 'page active' : 'page gradient'}" th:href="@{/f/film/type1(pageNo=${page.pages},typeNo=1)}">尾页</a>
+			</div></center>
+
+
+
+		<!-- 页脚 -->
+
+		<div class="bottom_inner_4" >
+			<img th:src="@{/front/images/talkme.png}" class="bottom_inner_4_1" >
+			<img th:src="@{/front/images/aboutWe.png}" class="bottom_inner_4_2"  >
+			<img th:src="@{/front/images/foot-log.png}" class="bottom_inner_4_3" >
+			<img th:src="@{/front/images/beian.png}" class="bottom_inner_4_4" >
+			<img th:src="@{/front/images/repoter.png}" class="bottom_inner_4_5"  >
+		</div>
+	</div>
+</div>
+
+</body>
 </html>

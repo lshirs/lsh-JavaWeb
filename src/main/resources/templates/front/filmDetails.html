@@ -12,14 +12,13 @@
 		<div class="demo">
 			<!-- 导航栏 -->
 			<div class="nav" >
-				<ul class="layui-nav top_nav" lay-filter="" >
-					<li class="layui-nav-item nav_iteam" ><img th:src="@{/front/images/logo.png}"></li>
-					<li class="layui-nav-item nav_iteam_1" style=""><a th:href="@{movie01.html}">首页</a></li>
-					<li class="layui-nav-item nav_iteam" ><a th:href="@{movie02.html}">战争/科幻</a></li>
-					<li class="layui-nav-item nav_iteam" ><a th:href="@{movie03.html}">动作/犯罪</a></li>
-					<li class="layui-nav-item nav_iteam" ><a th:href="@{movie04.html}">武侠/历史</a></li>
-					<li class="layui-nav-item nav_iteam"><a >其他电影</a></li>
-					<!--<li class="layui-nav-item nav_iteam"  ><a href="javascrip:void(0)" onclick="login()"><i class="layui-icon layui-icon-user" style="font-size: 26px; color: #FFFFFF;"></i>  yanxiang   ,退出</a></li>-->
+				<ul class="layui-nav nav-top" lay-filter="" >
+					<li class="layui-nav-item nav-item-top "><img th:src="@{/front/images/logo.png}"></li>
+					<li class="layui-nav-item nav-item-top02"><a th:href="@{/f/film/index}">首页</a></li>
+					<li class="layui-nav-item nav-item-top"><a th:href="@{/f/film/type1(typeNo=${'1'})}">战争/科幻</a></li>
+					<li class="layui-nav-item nav-item-top"><a th:href="@{/f/film/type2(typeNo=${'2'})}">武侠/历史</a></li>
+					<li class="layui-nav-item nav-item-top"><a th:href="@{/f/film/type3(typeNo=${'3'})}">动作/犯罪</a></li>
+					<li class="layui-nav-item nav-item-top"><a th:href="@{/f/film/type4(typeNo=${'4'})}">恐怖/惊悚</a></li>
 				</ul>
 				<div class="top_01">
 				</div>
@@ -29,6 +28,8 @@
 				<h1 th:text="'正在播放《'+${film.filmName}+'》--光视影线'">正在播放<a id="title01" href="#" >《战地风云》</a></h1>
 			</div>
 			<!-- Video -->
+
+
 			<div class="video">
 				<video width="1280" height="720" controls autoplay>
 					
@@ -45,7 +46,8 @@
 				    <div class="layui-col-md4 poster">
 						<!--电影图库-->
 						<div class="layui-row movie-img">
-							<img th:src="@{'/public/film/' + ${film.filmPic}}" >
+							<img th:if="not ${#lists.isEmpty(film.filmPic)}" class="thumb" th:src="@{'/public/film/' + ${film.filmPic}}" th:width="240px" th:height="360px" />
+							<img th:unless="not ${#lists.isEmpty(film.filmPic)}" class="thumb" th:src="@{/front/images/poster-default.png}" th:width="240px" th:height="360px" />
 						</div>
 						<!--影名+年份-->
 						<div class="layui-row" style="margin-top: 10px;">

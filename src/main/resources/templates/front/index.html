@@ -6,7 +6,7 @@
 	<title>光视影线</title>
 	<link rel="stylesheet" href="../../static/assets/css/layui1.css" th:href="@{/assets/css/layui1.css}" />
 	<link rel="stylesheet" href="../../static/front/css/style01.css" th:href="@{/front/css/style01.css}" />
-	<link rel="stylesheet" type="text/css" th:href="@{/assets/css/layui.css}" />
+
 	<link rel="stylesheet" type="text/css" th:href="@{/assets/css/view.css}" />
 	<script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
 	<link rel="stylesheet" th:href="@{/front/css/zerogrid.css}">
@@ -19,7 +19,7 @@
 		<!-- 导航栏 -->
 		<div class="nav">
 			<ul class="layui-nav nav-top" lay-filter="">
-				<li class="layui-nav-item nav-item-top"><img th:src="@{/front/images/logo.png}"></li>
+				<li class="layui-nav-item nav-item-top nav-item-top-top"><img th:style="@{margin-top:20px;}" th:src="@{/front/images/logo.png}"></li>
 				<li class="layui-nav-item nav-item-top02"><a th:href="@{/f/film/index}">首页</a></li>
 				<li class="layui-nav-item nav-item-top"><a th:href="@{/f/film/type1(typeNo=${'1'})}">战争/科幻</a></li>
 				<li class="layui-nav-item nav-item-top"><a th:href="@{/f/film/type2(typeNo=${'2'})}">武侠/历史</a></li>
@@ -36,9 +36,12 @@
 			<div class="top_inner_1">
 				<img th:src="@{/front/images/title.png}" class="top_button">
 				<!--按钮-->
-				<button type="button" th:height="70px"
-					class="layui-btn layui-btn-lg layui-btn-radius layui-btn-normal top_button_btn"
-					onclick="javascrtpt:window.location.href='Video.html'"> </button>
+				<a th:href="@{/f/film/details(id=40)}" >
+					<button type="button" th:height="70px"
+							class="layui-btn layui-btn-lg layui-btn-radius layui-btn-normal top_button_btn"
+					> </button>
+				</a>
+
 			</div>
 			<!-- banner and 轮播 -->
 
@@ -47,13 +50,13 @@
 					<!-- 左banner -->
 					<div class=" top_inner_2_left">
 						<div class="left left_1">
-							<a href=""><img th:src="@{/front/images/banner04.png}"></a>
+							<a th:href="@{/f/film/details(id=44)}"><img th:src="@{/front/images/banner04.png}"></a>
 						</div>
 						<div class="left left_2">
-							<a href=""><img th:src="@{/front/images/banner05.png}"></a>
+							<a th:href="@{/f/film/details(id=43)}"><img th:src="@{/front/images/banner05.png}"></a>
 						</div>
 						<div class="left left_3">
-							<a href=""><img th:src="@{/front/images/banner06.png}"></a>
+							<a th:href="@{/f/film/details(id=45)}"><img th:src="@{/front/images/banner06.png}"></a>
 						</div>
 					</div>
 				</div>
@@ -62,10 +65,10 @@
 					<div class=" top_inner_2_right">
 						<div class="layui-carousel test01" id="test1">
 							<div carousel-item>
-								<div><a href=""><img th:src="@{/front/images/banner01.png}"></a></div>
-								<div><a href=""><img th:src="@{/front/images/banner02.png}"></a></div>
-								<div><a href=""><img th:src="@{/front/images/banner03.png}"></a></div>
-								<div><a href=""><img th:src="@{/front/images/banner07.png}"></a></div>
+								<div><a th:href="@{/f/film/details(id=41)}"><img th:src="@{/front/images/banner01.png}"></a></div>
+								<div><a th:href="@{/f/film/details(id=42)}"><img th:src="@{/front/images/banner02.png}"></a></div>
+								<div><a th:href="@{/f/film/404}"><img th:src="@{/front/images/banner03.png}"></a></div>
+								<div><a th:href="@{/f/film/details(id=48)}"><img th:src="@{/front/images/banner07.png}"></a></div>
 							</div>
 						</div>
 					</div>
@@ -91,16 +94,22 @@
 													<img th:if="not ${#lists.isEmpty(film.filmPic)}" class="thumb" th:src="@{'/public/film/' + ${film.filmPic}}" th:width="240px" th:height="360px" />
 													<img th:unless="not ${#lists.isEmpty(film.filmPic)}" class="thumb" th:src="@{/front/images/poster-default.png}" th:width="240px" th:height="360px" />
 													<div class="mask">
-														<a th:href="@{/f/film/details(id=${film.id})}" class="info" title="Full Image">
+														<a th:if="not ${#lists.isEmpty(film.filmUrl)}" th:href="@{/f/film/details(id=${film.id})}" class="info" title="Full Image">
+															<img th:src="@{/front/images/play_button_64.png}"/></a>
+														<a th:unless="not ${#lists.isEmpty(film.filmUrl)}" th:href="@{/f/film/404}" class="info" title="Full Image">
 															<img th:src="@{/front/images/play_button_64.png}"/></a>
 													</div>
 
 												</div>
 												<div class="clear"></div>
-												<a th:href="@{/f/film/details(id=${film.id})}">
+
+												<a th:if="not ${#lists.isEmpty(film.filmUrl)}" th:href="@{/f/film/details(id=${film.id})}">
 													<h3 th:text="${film.filmName}">战狼2</h3>
 												</a>
-												<span th:text="${film.filmName}">吴京</span>
+												<a th:unless="not ${#lists.isEmpty(film.filmUrl)}" th:href="@{/f/film/404}">
+													<h3 th:text="${film.filmName}">战狼2</h3>
+												</a>
+												<span th:text="${film.releaseTime}">吴京</span>
 											</div>
 										</div>
 									</div>

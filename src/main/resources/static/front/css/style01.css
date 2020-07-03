@@ -133,9 +133,14 @@
 			    
 		}
 		.nav-top{
+			text-align: center;
 			background-image: url(../images/daohang.png);
 			min-width: 1900px;
 		}
+		.nav-item-top-top{
+
+		}
+
 		.nav-item-top{
 			margin-left:100px ;
 		}
