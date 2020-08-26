@@ -11,6 +11,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @RestController
 @RequestMapping("/a/upload")
@@ -61,7 +62,7 @@ public class UploadFileController {
     public FileResult videoUpload(MultipartFile file) {
         String fileName = "";
         if (!file.isEmpty()) {
-            String suffix = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
+            String suffix = Objects.requireNonNull(file.getOriginalFilename()).substring(file.getOriginalFilename().lastIndexOf("."));
             fileName = System.currentTimeMillis() + suffix;
             String savePath = appConfig.getFilePath() + "/video/"+ fileName;
             File destv = new File(savePath);
@@ -78,8 +79,8 @@ public class UploadFileController {
             return new FileResult("300","文件视频失败");
         }
 
-        //将上传成功后的文件路径返回到前端
-        String filePath = fileName;//存表中
+
+        String filePath = fileName;
         List<String> list = new ArrayList<>();
         list.add(filePath);
         return new FileResult("200",list);

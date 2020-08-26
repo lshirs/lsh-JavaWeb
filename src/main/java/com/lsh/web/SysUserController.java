@@ -50,17 +50,17 @@ public class SysUserController {
     @RequestMapping("list")
     public String list(Integer curr,Integer size,SysUser sysUser,Model model){
         //分页,用户数据
-        Integer cuurent = 1;
-        Integer pageList = 4;
+        int cuurent = 1;
+        int pageList = 4;
         //判断前台数据
         if (curr != null) cuurent = curr;
         if (size != null) pageList = size;
         QueryWrapper<SysUser> queryWrapper = new QueryWrapper<>();
         // 绑定查询条件 要判断空字符
-        if (sysUser != null && sysUser.getUsername() != null && sysUser.getUsername() != ""){
+        if (sysUser != null && sysUser.getUsername() != null && !sysUser.getUsername().equals("")){
             queryWrapper.eq("username",sysUser.getUsername());
         }
-        if (sysUser != null && sysUser.getEmail() != null && sysUser.getEmail() != ""){
+        if (sysUser != null && sysUser.getEmail() != null && !sysUser.getEmail().equals("")){
             queryWrapper.eq("email",sysUser.getEmail());
         }
 
